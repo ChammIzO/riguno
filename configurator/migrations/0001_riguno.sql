@@ -1,0 +1,10 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE IF NOT EXISTS profiles (id TEXT PRIMARY KEY, preferences TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS builds (id TEXT PRIMARY KEY,owner_id TEXT NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,name TEXT NOT NULL,parts TEXT NOT NULL,public INTEGER NOT NULL DEFAULT 0,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX IF NOT EXISTS builds_owner ON builds(owner_id,updated_at);
+CREATE TABLE IF NOT EXISTS rate_limits (key TEXT NOT NULL,bucket INTEGER NOT NULL,hits INTEGER NOT NULL,PRIMARY KEY(key,bucket));
+CREATE TABLE IF NOT EXISTS offers (id TEXT PRIMARY KEY,part_id TEXT NOT NULL,merchant TEXT NOT NULL,country TEXT NOT NULL,currency TEXT NOT NULL,amount REAL NOT NULL CHECK(amount>=0),shipping REAL CHECK(shipping>=0),in_stock INTEGER NOT NULL,url TEXT NOT NULL,observed_at TEXT NOT NULL,expires_at TEXT NOT NULL,UNIQUE(part_id,merchant,country,currency,url));
+CREATE INDEX IF NOT EXISTS offers_part ON offers(part_id,country,currency);
+CREATE TABLE IF NOT EXISTS price_history (id TEXT PRIMARY KEY,part_id TEXT NOT NULL,merchant TEXT NOT NULL,country TEXT NOT NULL,currency TEXT NOT NULL,amount REAL NOT NULL,shipping REAL,in_stock INTEGER NOT NULL,url TEXT NOT NULL,observed_at TEXT NOT NULL,UNIQUE(part_id,merchant,country,currency,url,observed_at));
+CREATE INDEX IF NOT EXISTS history_part ON price_history(part_id,country,currency,observed_at);
+CREATE TABLE IF NOT EXISTS benchmarks (id TEXT PRIMARY KEY,part_id TEXT NOT NULL,test TEXT NOT NULL,score REAL NOT NULL,unit TEXT NOT NULL,source TEXT NOT NULL,measured_at TEXT NOT NULL,context TEXT NOT NULL);

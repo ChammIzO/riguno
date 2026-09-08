@@ -1,0 +1,25 @@
+name: Refresh merchant offers
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: riguno-merchant-prices
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Collect authorized merchant feeds
+        env:
+          RIGUNO_FEEDS: ${{ secrets.RIGUNO_FEEDS }}
+          RIGUNO_INGEST_URL: ${{ secrets.RIGUNO_INGEST_URL }}
+          RIGUNO_INGEST_TOKEN: ${{ secrets.RIGUNO_INGEST_TOKEN }}
+        run: python tools/pricing/collect.py

@@ -1,0 +1,7 @@
+[
+  {"merchant":"amazon","url":"REPLACE_WITH_AUTHORIZED_NORMALIZED_CREATORS_API_BRIDGE","country":"fr","currency":"EUR","format":"json","ttl_seconds":3600,"history_allowed":false},
+  {"merchant":"grosbill","url":"REPLACE_WITH_AUTHORIZED_PARTNER_FEED","country":"fr","currency":"EUR","format":"csv","ttl_seconds":3600,"history_allowed":false},
+  {"merchant":"ldlc","url":"REPLACE_WITH_AUTHORIZED_PARTNER_FEED","country":"fr","currency":"EUR","format":"csv","ttl_seconds":3600,"history_allowed":false},
+  {"merchant":"topachat","url":"REPLACE_WITH_AUTHORIZED_PARTNER_FEED","country":"fr","currency":"EUR","format":"json","ttl_seconds":3600,"history_allowed":false},
+  {"merchant":"materielnet","url":"REPLACE_WITH_AUTHORIZED_PARTNER_FEED","country":"fr","currency":"EUR","format":"csv","ttl_seconds":3600,"history_allowed":false}
+]

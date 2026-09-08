@@ -1,0 +1,28 @@
+name: Verify Riguno
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: configurator/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+        working-directory: configurator
+      - run: npx tsc --noEmit
+        working-directory: configurator
+      - run: node --experimental-strip-types --test tests/compatibility.test.mjs
+      - run: python -m unittest discover -s tests -p 'test_*.py'
+      - run: npm run build
+        working-directory: configurator

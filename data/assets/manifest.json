@@ -1,0 +1,22 @@
+[
+  {
+    "file": "/images/amd-ryzen-9800x3d.png",
+    "author": "ZMASLO",
+    "license": "CC BY 3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Video_zum_AMD_Ryzen_7_9800X3D_(ZMASLO)_06.png",
+    "changes": "None",
+    "category": "CPU",
+    "match": "AMD Ryzen 7 9800X3D"
+  },
+  {
+    "file": "/images/gigabyte-rtx4070-aero-oc.jpg",
+    "author": "Jacek Halicki",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:2023_Gigabyte_GeForce_RTX_4070_Aero_OC_12GB_(2).jpg",
+    "changes": "None",
+    "category": "GPU",
+    "match": "Gigabyte AERO OC GeForce RTX 4070 12GB GDDR6X White / Silver"
+  }
+]

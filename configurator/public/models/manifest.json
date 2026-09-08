@@ -1,0 +1,92 @@
+{
+  "cpu": {
+    "file": "cpu.gltf",
+    "dimensions_m": [
+      0.04,
+      0.004,
+      0.04
+    ],
+    "license": "MIT",
+    "accuracy": "generic-envelope"
+  },
+  "gpu": {
+    "file": "gpu.gltf",
+    "dimensions_m": [
+      0.11,
+      0.05,
+      0.28
+    ],
+    "license": "MIT",
+    "accuracy": "generic-envelope"
+  },
+  "ram": {
+    "file": "ram.gltf",
+    "dimensions_m": [
+      0.006,
+      0.133,
+      0.035
+    ],
+    "license": "MIT",
+    "accuracy": "generic-envelope"
+  },
+  "motherboard": {
+    "file": "motherboard.gltf",
+    "dimensions_m": [
+      0.244,
+      0.003,
+      0.305
+    ],
+    "license": "MIT",
+    "accuracy": "generic-envelope"
+  },
+  "psu": {
+    "file": "psu.gltf",
+    "dimensions_m": [
+      0.15,
+      0.086,
+      0.15
+    ],
+    "license": "MIT",
+    "accuracy": "generic-envelope"
+  },
+  "case": {
+    "file": "case.gltf",
+    "dimensions_m": [
+      0.22,
+      0.44,
+      0.44
+    ],
+    "license": "MIT",
+    "accuracy": "generic-envelope"
+  },
+  "storage": {
+    "file": "storage.gltf",
+    "dimensions_m": [
+      0.022,
+      0.003,
+      0.08
+    ],
+    "license": "MIT",
+    "accuracy": "generic-envelope"
+  },
+  "cpu-cooler": {
+    "file": "cpu-cooler.gltf",
+    "dimensions_m": [
+      0.12,
+      0.157,
+      0.1
+    ],
+    "license": "MIT",
+    "accuracy": "generic-envelope"
+  },
+  "fan": {
+    "file": "fan.gltf",
+    "dimensions_m": [
+      0.12,
+      0.12,
+      0.025
+    ],
+    "license": "MIT",
+    "accuracy": "generic-envelope"
+  }
+}

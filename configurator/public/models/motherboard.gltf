@@ -1,0 +1,98 @@
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "Riguno envelope exporter",
+    "copyright": "Riguno contributors, MIT"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "motherboard-generic-envelope"
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0
+          },
+          "indices": 1,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.3,
+          0.65,
+          0.61,
+          1
+        ],
+        "metallicFactor": 0.2,
+        "roughnessFactor": 0.7
+      }
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "data:application/octet-stream;base64,I9v5vaabxLr2KBy+I9v5PaabxLr2KBy+I9v5vaabxDr2KBy+I9v5PaabxDr2KBy+I9v5vaabxLr2KBw+I9v5PaabxLr2KBw+I9v5vaabxDr2KBw+I9v5PaabxDr2KBw+AAACAAMAAAADAAEABAAFAAcABAAHAAYAAAABAAUAAAAFAAQAAgAGAAcAAgAHAAMAAAAEAAYAAAAGAAIAAQADAAcAAQAHAAUA",
+      "byteLength": 168
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 96,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 96,
+      "byteLength": 72,
+      "target": 34963
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 8,
+      "type": "VEC3",
+      "min": [
+        -0.122,
+        -0.0015,
+        -0.1525
+      ],
+      "max": [
+        0.122,
+        0.0015,
+        0.1525
+      ]
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5123,
+      "count": 36,
+      "type": "SCALAR"
+    }
+  ],
+  "extras": {
+    "accuracy": "generic envelope only",
+    "units": "metres",
+    "manufacturer_model": false
+  }
+}
