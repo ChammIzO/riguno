@@ -4,6 +4,7 @@ All product matches are exact OpenDB UUIDs, never fuzzy names.
 """
 import os,json,csv,io,urllib.request,urllib.parse,datetime,sys,time
 from pathlib import Path
+from identifiers import IdentifierIndex
 MERCHANTS={'amazon':{'amazon.fr','amazon.de','amazon.co.uk','amazon.com'},'grosbill':{'grosbill.com'},'ldlc':{'ldlc.com'},'topachat':{'topachat.com'},'materielnet':{'materiel.net'}}
 def now():return datetime.datetime.now(datetime.timezone.utc)
 def normalize(row,cfg,known):
@@ -33,9 +34,16 @@ def fetch(url,headers=None):
   if len(data)>25000000:raise ValueError('Feed exceeds 25 MB')
   return data.decode('utf-8-sig')
 def main():
- config=json.loads(os.environ.get('RIGUNO_FEEDS','[]'))
+ raw_config=os.environ.get('RIGUNO_FEEDS','').strip()
+ try:
+  config=json.loads(raw_config or '[]')
+ except json.JSONDecodeError:
+  print('Merchant feed configuration is not valid JSON.',file=sys.stderr);sys.exit(1)
+ if not isinstance(config,list):
+  print('Merchant feed configuration must be an array.',file=sys.stderr);sys.exit(1)
  if not config:print('No merchant feed configured. Nothing collected.');return
  root=Path(__file__).resolve().parents[2];known={p['id'] for f in (root/'configurator/public/data').glob('*.json') if f.stem not in ['index','defaults'] for p in json.loads(f.read_text())}
+ index=IdentifierIndex.from_archive(root/'data/upstream/buildcores-open-db.tar.gz',known)
  total=0;failures=0
  for cfg in config:
   merchant=cfg.get('merchant')
@@ -46,7 +54,9 @@ def main():
    if cfg.get('root'):rows=rows[cfg['root']]
    valid=[]; rejected=0
    for row in rows:
-    try:valid.append(normalize(row,cfg,known))
+    try:
+     mapped=dict(row);mapped[cfg.get('fields',{}).get('part_id','part_id')]=index.resolve(row,cfg,known)
+     valid.append(normalize(mapped,cfg,known))
     except (ValueError,TypeError,KeyError):rejected+=1
    for start in range(0,len(valid),100):
     batch=valid[start:start+100]; endpoint=os.environ['RIGUNO_INGEST_URL']

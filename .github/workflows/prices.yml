@@ -1,5 +1,9 @@
 name: Refresh merchant offers
 on:
+  push:
+    paths:
+      - tools/pricing/**
+      - .github/workflows/prices.yml
   workflow_dispatch:
   schedule:
     - cron: '17 * * * *'
