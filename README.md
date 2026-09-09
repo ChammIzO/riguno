@@ -2,7 +2,7 @@
 
 Configurateur PC gratuit et open source. Application dédiée dans [`configurator/`](configurator/).
 
-**État : version de développement fonctionnelle, non déployée.** Ce dépôt ne prétend pas fournir une validation mécanique complète ni des prix temps réel sans sources marchandes configurées.
+**État : version de développement avec publication GitHub Pages préparée.** Ce dépôt ne prétend pas fournir une validation mécanique complète ni des prix temps réel sans sources marchandes configurées.
 
 - 47 869 fiches OpenDB archivées localement, dont **29 586** références dans les neuf catégories configurables.
 - Interface React/TypeScript responsive, thèmes clair/sombre/automatique, recherche par modèle et marque, sélection et retrait des composants.
@@ -29,6 +29,10 @@ Configurateur PC gratuit et open source. Application dédiée dans [`configurato
 | `tools/` | Import, modèles et collecte des prix |
 | `tests/` | Tests métier, prix et SQL |
 | `docs/` | Installation, limites, sécurité, sources et prix |
+
+## Tester dans le navigateur
+
+Le workflow GitHub Pages est prêt. [Activer Pages](docs/GITHUB-PAGES.md), puis ouvrir https://chammizo.github.io/riguno/ après la première publication réussie. La version Pages utilise des sauvegardes locales et le partage par lien, sans API serveur.
 
 ## Démarrage
 

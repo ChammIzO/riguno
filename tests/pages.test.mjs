@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {encodeBuild,decodeBuild,saveLocalBuild,readLocalBuilds,deleteLocalBuild} from '../configurator/lib/local-builds.ts';
+process.env.NEXT_PUBLIC_RIGUNO_BASE='/riguno/';
+const {assetPath}=await import('../configurator/lib/runtime.ts');
+const sample={schemaVersion:1,name:'PC d’Arthur — été 🔧',parts:{CPU:'00000000-0000-4000-8000-000000000001'}};
+test('shared configuration preserves Unicode and exact component IDs',()=>assert.deepEqual(decodeBuild(encodeBuild(sample)),sample));
+test('share payload rejects malformed identifiers and oversized input',()=>{assert.throws(()=>encodeBuild({...sample,parts:{CPU:'not-a-uuid'}}));assert.throws(()=>decodeBuild('a'.repeat(5001)));});
+test('GitHub project URLs keep catalog, photos and home beneath the repository',()=>{assert.equal(assetPath('/data/CPU.json'),'/riguno/data/CPU.json');assert.equal(assetPath('/images/photo.jpg'),'/riguno/images/photo.jpg');assert.equal(assetPath('/'),'/riguno/');});
+test('named local configurations can be reopened and independently removed',()=>{const data=new Map();globalThis.localStorage={getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)};const a=saveLocalBuild(sample);const b=saveLocalBuild({...sample,name:'Deuxième PC'});assert.equal(readLocalBuilds().length,2);deleteLocalBuild(a.id);assert.equal(readLocalBuilds()[0].id,b.id);assert.deepEqual(readLocalBuilds()[0].parts,sample.parts);});

@@ -1,0 +1,46 @@
+name: Publish GitHub Pages
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'configurator/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: configurator/package-lock.json
+      - run: npm ci
+        working-directory: configurator
+      - name: Build static configurator
+        run: npm run build:pages
+        working-directory: configurator
+        env:
+          RIGUNO_PAGES_BASE: /riguno/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: configurator/dist-pages
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - id: deployment
+        uses: actions/deploy-pages@v4
